@@ -21,7 +21,7 @@ export default function Login() {
   };
 
   async function user() {
-    const res = await fetch(`http://localhost:8000/v1/user`, {
+    const res = await fetch(`https://voteable-backend.onrender.com/v1/user`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

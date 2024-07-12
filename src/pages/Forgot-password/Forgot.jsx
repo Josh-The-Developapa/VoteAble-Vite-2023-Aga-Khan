@@ -25,17 +25,20 @@ export default function Forgot() {
   const forgotPass = async function () {
     if (name && email) {
       setIsLoading(true);
-      const res = await fetch('http://localhost:8000/v1/forgot-password', {
-        method: 'POST',
-        credentials: 'include',
-        body: JSON.stringify({
-          name: name,
-          email: email,
-        }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      const res = await fetch(
+        'https://voteable-backend.onrender.com/v1/forgot-password',
+        {
+          method: 'POST',
+          credentials: 'include',
+          body: JSON.stringify({
+            name: name,
+            email: email,
+          }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
 
       const data = await res.json();
       console.log(data);

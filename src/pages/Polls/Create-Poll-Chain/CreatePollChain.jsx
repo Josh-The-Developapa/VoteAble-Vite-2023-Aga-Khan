@@ -112,7 +112,7 @@ function CreatePollChain() {
             }
             async function createPollChain() {
               const res = await fetch(
-                'http://localhost:8000/v1/create-poll-chain/',
+                'https://voteable-backend.onrender.com/v1/create-poll-chain/',
                 {
                   method: 'POST',
                   headers: {

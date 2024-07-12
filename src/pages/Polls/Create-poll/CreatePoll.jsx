@@ -120,23 +120,26 @@ function CreatePoll() {
     }));
 
     try {
-      const res = await fetch('http://localhost:8000/v1/create-poll', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          question,
-          options: finalOptions,
-          owner: {
-            name: localStorage.getItem('name'),
-            password: localStorage.getItem('password'),
-            gender: localStorage.getItem('gender'),
+      const res = await fetch(
+        'https://voteable-backend.onrender.com/v1/create-poll',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
           },
-          class: pollClass,
-          house: pollHouse,
-        }),
-      });
+          body: JSON.stringify({
+            question,
+            options: finalOptions,
+            owner: {
+              name: localStorage.getItem('name'),
+              password: localStorage.getItem('password'),
+              gender: localStorage.getItem('gender'),
+            },
+            class: pollClass,
+            house: pollHouse,
+          }),
+        }
+      );
 
       if (res.ok) {
         navigate('/polls');

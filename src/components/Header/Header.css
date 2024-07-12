@@ -45,6 +45,7 @@
 .logoImage {
   object-fit: contain;
   height: 28px;
+  margin-right: 100px;
 }
 
 .headerTextImage {

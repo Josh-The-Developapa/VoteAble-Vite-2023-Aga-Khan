@@ -18,7 +18,9 @@ function Poll(props) {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     async function poll() {
       const res = await fetch(
-        `http://localhost:8000/v1/poll/${pollId ? pollId : props.pollId}`,
+        `https://voteable-backend.onrender.com/v1/poll/${
+          pollId ? pollId : props.pollId
+        }`,
         {
           method: 'GET',
         }
@@ -46,7 +48,9 @@ function Poll(props) {
     }
 
     const res = await fetch(
-      `http://localhost:8000/v1/vote/${pollId ? pollId : props.pollId}`,
+      `https://voteable-backend.onrender.com/v1/vote/${
+        pollId ? pollId : props.pollId
+      }`,
       {
         method: 'POST',
         body: JSON.stringify({
@@ -127,7 +131,7 @@ function Poll(props) {
               >
                 {option.photo && (
                   <img
-                    src={`http://localhost:8000/uploads/${option.photo}`}
+                    src={`https://voteable-backend.onrender.com/uploads/${option.photo}`}
                     alt={option.text}
                     // className="optionImg"
                   />

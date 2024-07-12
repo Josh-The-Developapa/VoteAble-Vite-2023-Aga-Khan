@@ -35,7 +35,7 @@ function PollChain() {
     const myPolls = async () => {
       setIsLoading(true);
       const res = await fetch(
-        `http://localhost:8000/v1/poll-chain-polls/${params.id}`,
+        `https://voteable-backend.onrender.com/v1/poll-chain-polls/${params.id}`,
         {
           method: 'GET',
           credentials: 'include',
@@ -310,7 +310,7 @@ function PollChain() {
                     className="dBtn"
                     onClick={async () => {
                       const res = await fetch(
-                        `http://localhost:8000/v1/delete-poll/${poll._id}`,
+                        `https://voteable-backend.onrender.com/v1/delete-poll/${poll._id}`,
                         {
                           method: 'DELETE',
                           credentials: 'include',
