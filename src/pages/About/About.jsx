@@ -4,10 +4,8 @@ import Header from '../../components/Header/Header.jsx';
 import Logo from '../../assets/Logo.svg';
 import TeamPic from '../../assets/team-pic.jpg';
 import LaptopPic from '../../assets/Laptop.png';
-// import LaptopPic from '../../assets/Working.jpg';
 import EmmanuelImage from '../../assets/Emmanuel Asiimwe.jpeg';
 import AkhilImage from '../../assets/Akhil Muni.jpeg';
-// import JoshuaImage from '../../assets/joshua.png';
 import JoshuaImage from '../../assets/JMuks.jpeg';
 import AlbertImage from '../../assets/Albert Jordan Mulumba.jpeg';
 import KhushImage from '../../assets/Khush Shah.jpeg';
@@ -50,6 +48,7 @@ function AboutVoteable() {
               display: 'flex',
               flexDirection: 'column',
               padding: '45px',
+              paddingTop: '100px',
             }}
           >
             <h2

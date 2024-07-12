@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import Header from '../../components/Header/Header.jsx';
-// import ScrollToTop from "react-scroll-to-top";
 
 function NotFound() {
   useEffect(() => {
@@ -9,8 +8,7 @@ function NotFound() {
   return (
     <div className="joinOuterContainer">
       <Header />
-      <h1 style={{ color: 'white' }}>404 - Page Not Found</h1>
-      {/* <ScrollToTop smooth /> */}
+      <h1 style={{ color: 'black' }}>404 - Page Not Found</h1>
     </div>
   );
 }

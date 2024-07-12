@@ -1,12 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
 
-@font-face {
-   font-family: "Kumbh Sans", sans-serif;
-    src: url(../../assets/fonts/Fontspring-DEMO-mercenary-medium.otf) format('opentype');
-    font-weight: normal;
-    font-style: normal;
-}
-
 body {
   padding: 0;
   margin: 0;

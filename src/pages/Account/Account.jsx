@@ -7,10 +7,8 @@ import { RiGraduationCapLine } from 'react-icons/ri';
 import { GoDotFill } from 'react-icons/go';
 import TeamPic from '../../assets/team-pic.jpg';
 import BallotBox from '../../assets/BallotBox.png';
-import HeaderText from '../../assets/Header Text.svg';
 import { NavLink } from 'react-router-dom';
 import AccountSVG from '../../assets/Account.svg';
-import LaptopPic from '../../assets/Laptop.png';
 
 function Account() {
   const [voted, setVoted] = useState('Status Pending...');
@@ -46,7 +44,6 @@ function Account() {
           )
         );
         setVoted(hasVoted);
-        // return hasVoted;
         return false;
       } catch (error) {
         console.error('Error checking polls:', error);
@@ -186,8 +183,6 @@ function Account() {
               flexDirection: 'row',
               justifyContent: 'flex-start',
               alignItems: 'flex-start',
-              // paddingLeft: '40px',
-              // paddingRight: '60px',
             }}
           >
             <p
@@ -234,8 +229,6 @@ function Account() {
               flexDirection: 'row',
               justifyContent: 'flex-start',
               alignItems: 'flex-start',
-              // paddingLeft: '40px',
-              // paddingRight: '60px',
             }}
           >
             <p
@@ -275,9 +268,7 @@ function Account() {
           position: 'absolute',
           left: 0,
           height: '400px',
-          // width: '400px',
           bottom: 0,
-          // zIndex: 0,
         }}
       />
     </div>

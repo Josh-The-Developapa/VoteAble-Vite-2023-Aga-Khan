@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from 'react';
 import Header from '../../../components/Header/Header.jsx';
 import { useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
-import axios from 'axios';
 import './CreatePoll.css';
 
 function CreatePoll() {

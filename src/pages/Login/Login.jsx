@@ -3,11 +3,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import avatarPic from '../../assets/Logo.svg';
 import Header from '../../components/Header/Header.jsx';
 import HomepageSVG from '../../assets/Blocks.svg';
-// import Context from "../../Context/Context";
 import './Login.css';
 
 export default function Login() {
-  // const ctx = useContext(Context);
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [nameErr, setNameErr] = useState('');
@@ -181,7 +179,7 @@ export default function Login() {
             paddingBottom: '15px',
             backgroundImage:
               'linear-gradient(90deg,#5c0096,#17005c, rgb(96, 0, 81))',
-            fontFamily: 'Mercenary',
+            fontFamily: 'Kumbh Sans',
           }}
         >
           <p style={{ fontSize: '20px', fontFamily: 'Kumbh Sans', margin: 0 }}>

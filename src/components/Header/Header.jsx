@@ -3,12 +3,10 @@ import React, {
   useContext,
   useCallback,
   useEffect,
-  lazy,
   Suspense,
 } from 'react';
 import { FiMenu } from 'react-icons/fi';
 import { NavLink } from 'react-router-dom';
-import MenuIcon from '@mui/icons-material/Menu';
 import Context from '../../Context/Context.jsx';
 import { useNavigate } from 'react-router-dom';
 import HeaderText from '../../assets/Header Text.svg';

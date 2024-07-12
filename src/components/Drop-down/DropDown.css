@@ -1,15 +1,13 @@
 .dropdown {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
+  align-items: center;
   z-index: 900;
   position: fixed;
   top: 0;
   left: 0;
   height: 100%;
   background-color: white;
-  justify-content: flex-start;
-  align-items: center;
   padding-right: 20px;
   animation: animateleft 0.5s;
 }
@@ -25,32 +23,36 @@
   }
 }
 
-.btnn {
+.btnn,
+.dropDownPollLink {
   cursor: pointer;
-  color: #fff !important;
-  text-transform: uppercase;
   text-decoration: none;
-  background: #4600b6;
-  padding: 10px;
-  border-radius: 10px;
-  display: inline-block;
-  border: none;
-  width: 150px;
+  text-align: center;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  margin-top: 10px;
-  margin-left: 10px;
-  margin-bottom: 10px;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
 }
-.dropDownPollLink{
-   cursor: pointer;
+
+.btnn {
+  color: #fff !important;
+  background: #4600b6;
+  width: 150px;
+  font-size: 16.5px;
+}
+
+.dropDownPollLink {
   color: #fff !important;
   background: #27003c;
   padding: 10px 25px;
-  margin: 0 10px;
-  border-radius: 5px;
   font-family: "Kumbh Sans", sans-serif;
   font-size: 20px;
 }
+
+.logout {
+  margin: 25px;
+}
+
 .tsBG {
   opacity: 0.7;
   z-index: 120;
@@ -62,16 +64,35 @@
   background-color: black;
 }
 
-.img {
-  object-fit: contain;
-  height: 100px;
-}
-
 @media screen and (min-width: 654px) {
-  .dropdown {
-    display: none;
-  }
+  .dropdown,
   .tsBG {
     display: none;
   }
+}
+
+.user-info {
+  margin: 0 0 50px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  background-color: #d7d6d6;
+  border-radius: 10px;
+}
+
+.avatarImage {
+  margin-bottom: 0;
+  height: 90px;
+  width: 90px;
+}
+
+.highlight {
+  color: #27003c;
 }

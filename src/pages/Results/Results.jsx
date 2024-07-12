@@ -5,7 +5,6 @@ import { CircularProgress } from '@mui/material';
 import './Results.css';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
-// import sikeNigga from '../../assets/sike-nigga.jpeg';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
