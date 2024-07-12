@@ -35,7 +35,7 @@ function PollChain() {
     const myPolls = async () => {
       setIsLoading(true);
       const res = await fetch(
-        `https://voteable-backend.onrender.com/v1/poll-chain-polls/${params.id}`,
+        `http://localhost:8000/v1/poll-chain-polls/${params.id}`,
         {
           method: 'GET',
           credentials: 'include',
@@ -55,11 +55,11 @@ function PollChain() {
 
       if (data.error === 'You have to login / signup first') {
         setSignupFirstErr('You have to login first');
-        return
+        return;
       }
       if (data.error === 'No polls found') {
         setNoPollsFound(true);
-        return
+        return;
       }
     };
     myPolls();
@@ -310,7 +310,7 @@ function PollChain() {
                     className="dBtn"
                     onClick={async () => {
                       const res = await fetch(
-                        `https://voteable-backend.onrender.com/v1/delete-poll/${poll._id}`,
+                        `http://localhost:8000/v1/delete-poll/${poll._id}`,
                         {
                           method: 'DELETE',
                           credentials: 'include',

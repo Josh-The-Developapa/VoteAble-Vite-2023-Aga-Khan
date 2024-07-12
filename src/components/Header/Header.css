@@ -1,30 +1,89 @@
-h5 {
-  max-width: 230px;
-  overflow-x: auto;
-  margin-left: 10px;
-  margin-right: 10px;
-}
-
-.avatarImg {
-  border-radius: 25px;
-}
-
-.small-box {
-  background-color: rgb(204, 204, 204);
-  border-radius: 15px;
-  height: 10px;
-  width: 15px;
-}
-
-.profile-tab-btn {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+.headerContainer {
+  position: fixed;
+  left: 0;
+  z-index: 100;
+  top: 0;
+  background-color: #efefef;
+  width: 100%;
+  justify-content: flex-start;
   align-items: center;
-  background-color: rgb(215, 214, 214);
-  border-radius: 15px;
-  margin-top: 5px;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 15px; /* Adjusted padding */
+  box-shadow: 0 6px 6px -2px rgba(48, 0, 206, 0.319), 0 4px 6px -2px rgba(85, 0, 222, 0.219);
+}
+
+
+
+
+.menuWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex: 1;
+}
+
+.menuIcon {
+  cursor: pointer;
   margin-left: 10px;
+}
+
+.logoLink {
+  height: 50px;
+  width: 70%;
+  display: flex;
+  align-items: center;
+}
+
+.logoWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logoImage {
+  object-fit: contain;
+  height: 28px;
+}
+
+.headerTextImage {
+  object-fit: contain;
+  height: 28px;
+}
+
+.loginLink, .pollLink {
+  cursor: pointer;
+  color: #fff !important;
+  background: #27003c;
+  padding: 10px 25px;
+  margin: 0 10px;
+  border-radius: 5px;
+  font-family: "Kumbh Sans", sans-serif;
+  font-size: 20px;
+}
+
+.loginLink:focus, .pollLink:focus {
+  outline: 0;
+}
+
+.loginLink:hover, .pollLink:hover {
+  background: #400063;
+}
+
+.avatarImage {
+  border-radius: 25px;
+  height:30px;
+  width:30px;
+  margin:10px;
+}
+
+.profileWrapper {
+  display: flex;
+  align-items: center;
+  background-color: #d7d6d6;
+  border-radius: 15px;
+  margin: 5px 10px;
   cursor: pointer;
 }
 
@@ -35,112 +94,23 @@ img {
   margin-left: 10px;
 }
 
-@media screen and (max-width: 654px) {
-  .h4 {
+@media screen and (max-width: 651px) {
+  .loginLink {
     display: none;
   }
-  /* .profile-tab-btn {
+    .pollLink{
     display: none;
-  } */
-  #ff {
-    display: none;
-  }
-  .navBar {
-    position: fixed;
-    left: 0;
-    z-index: 9;
-    top: 0;
-    background-color: white;
-    width: 100%;
-    align-items: center;
-    text-align: center;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding-bottom: 12px;
-    padding-top: 12px;
-  }
-  .popo {
-    display: none;
-  }
-  .btn-n {
-    display: none;
-  }
-  .img {
-    margin-left: 25px;
-  }
-  .Menu {
-    position: relative;
-    color: #4600b6;
-    cursor: pointer;
-    margin-left: 5%;
   }
 }
 
-@media screen and (min-width: 654px) {
-  .navBar {
-    position: fixed;
-    left: 0;
-    z-index: 9;
-    top: 0;
-    background-color: white;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding-bottom: 10px;
+@media screen and (max-width: 490px) {
+  .profileWrapper{
+    display:none;
   }
-  .Menu {
-    cursor: auto;
-    opacity: 0;
-  }
-  .popo {
-    cursor: pointer;
-    color: #fff !important;
-    text-transform: uppercase;
-    text-decoration: none;
-    background: #4600b6;
-    padding: 10px;
-    border-radius: 15px;
-    display: inline-block;
-    border: none;
-    width: 100px;
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-    margin-top: 5px;
-    margin-left: 20px;
-  }
+}
 
-  .popo:focus {
-    outline: 0;
-  }
-
-  .popo:hover {
-    background: #4a00aa;
-  }
-
-  .btn-n {
-    cursor: pointer;
-    color: #fff !important;
-    text-transform: uppercase;
-    text-decoration: none;
-    background: #4600b6;
-    padding: 15px;
-    border-radius: 15px;
-    /* display: inline-block; */
-    border: none;
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-    margin-left: 20px;
-    margin-top: 5px;
-  }
-
-  .btn-n:hover {
-    background: #4a00aa;
-  }
-
-  .btn-n:focus {
-    outline: 0;
+@media screen and (min-width: 652px) {
+  .menuIcon {
+    display: none;
   }
 }

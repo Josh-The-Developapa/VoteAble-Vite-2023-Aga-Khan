@@ -1,24 +1,29 @@
 import React, { useContext } from 'react';
 import './DropDown.css';
 import { NavLink } from 'react-router-dom';
-import avatarPic from '../../assets/VoteAble logo.png';
+import avatarPic from '../../assets/Logo.svg';
 import Context from '../../Context/Context.jsx';
 import Menuu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import avatarImg from '../../assets/avatarIcon.jpeg';
+import { MdOutlineAccountCircle } from 'react-icons/md';
 
 function DropDown(props) {
   const ctx = useContext(Context);
 
-  // const [anchorEl, setAnchorEl] = React.useState(null);
-  // const open = Boolean(anchorEl);
-  // const handleClick = (event) => {
-  //   setAnchorEl(event.currentTarget);
-  // };
-  // const handleClose = () => {
-  //   setAnchorEl(null);
-  // };
-
+  function formatName(name) {
+    if (!name) return '';
+    let nameParts = name.split(' ');
+    let firstName = nameParts[0].toLowerCase();
+    firstName = firstName.split('');
+    firstName[0] = firstName[0].toUpperCase();
+    firstName = firstName.join('');
+    let lastNamesInitials = nameParts
+      .slice(1)
+      .map((n) => n.charAt(0))
+      .join('.');
+    return `${firstName} ${lastNamesInitials}`;
+  }
   const [banchorEl, setBanchorEl] = React.useState(null);
   const bopen = Boolean(banchorEl);
   const bhandleClick = (event) => {
@@ -47,35 +52,39 @@ function DropDown(props) {
         }}
       ></div>
       <div className="dropdown">
-        <NavLink to="/home" style={{ marginTop: '15px' }}>
-          <img
-            src={avatarPic}
-            alt="header"
-            className="img"
-            onClick={() => {
-              ctx.setIsDropVal(false);
-            }}
-          />
-        </NavLink>
         {localStorage.getItem('name') ? (
           <div
-            className="profile-tab-btn"
-            title="see-profile"
-            style={{ padding: '10px' }}
+            style={{
+              margin: 0,
+              marginTop: '50px',
+              marginBottom: '50px',
+            }}
           >
-            <img src={avatarImg} alt="avatarImg" className="avatarImg" />
-            <p
-              className="h5"
+            <NavLink
+              to="/account"
               style={{
-                margin: '10px',
-                whiteSpace: 'nowrap',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-                maxWidth: '175px',
+                textDecoration: 'none',
+
+                color: 'black',
+                margin: 'auto',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                padding: '15px',
+                flexDirection: 'column',
+                backgroundColor: '#d7d6d6',
+                borderRadius: '10px',
               }}
             >
-              {localStorage.getItem('name')}
-            </p>
+              <MdOutlineAccountCircle
+                className="avatarImage"
+                style={{ marginBottom: '0px', height: '90px', width: '90px' }}
+              />
+              <h2>
+                <span class="highlight">Welcome,</span> <br />
+                {formatName(localStorage.getItem('name'))}
+              </h2>
+            </NavLink>
           </div>
         ) : (
           ''
@@ -95,6 +104,21 @@ function DropDown(props) {
         ) : (
           ''
         )}
+        <NavLink
+          to="/home"
+          className="dropDownPollLink"
+          style={{
+            textDecoration: 'none',
+            color: 'black',
+            textAlign: 'center',
+            marginBottom: '30px',
+          }}
+          onClick={() => {
+            ctx.setIsDropVal(false);
+          }}
+        >
+          Home
+        </NavLink>
         {localStorage.getItem('name') ? (
           <div>
             {/* <button
@@ -107,17 +131,21 @@ function DropDown(props) {
             >
               Poll Hub
             </button> */}
-              <NavLink
+            <NavLink
               to="/polls"
-              className='btnn'
-                style={{ textDecoration: 'none', color: 'black', textAlign:'center' }}
-                onClick={() => {
-                  ctx.setIsDropVal(false);
-                }}
+              className="dropDownPollLink"
+              style={{
+                textDecoration: 'none',
+                color: 'black',
+                textAlign: 'center',
+              }}
+              onClick={() => {
+                ctx.setIsDropVal(false);
+              }}
             >
               Poll Hub
-              </NavLink>
-              {/* <NavLink
+            </NavLink>
+            {/* <NavLink
                 to="/my-poll-chains"
                 style={{ textDecoration: 'none', color: 'black' }}
                 onClick={() => {
@@ -126,13 +154,27 @@ function DropDown(props) {
               >
                 <MenuItem>Poll Chains</MenuItem>
               </NavLink> */}
-            
           </div>
         ) : (
           ''
         )}
+        <NavLink
+          to="/about"
+          className="dropDownPollLink"
+          style={{
+            textDecoration: 'none',
+            color: 'black',
+            textAlign: 'center',
+            marginTop: '30px',
+          }}
+          onClick={() => {
+            ctx.setIsDropVal(false);
+          }}
+        >
+          About Us
+        </NavLink>
 
-        {/* <form action='https://voteable-backend.onrender.com/v1/create-checkout-session' method="POST">
+        {/* <form action='http://localhost:8000/v1/create-checkout-session' method="POST">
           <button className="btnn" type="submit">Donate</button>
         </form> */}
         {/* {localStorage.getItem('name') ? (
@@ -180,8 +222,8 @@ function DropDown(props) {
           </div> : ''} */}
         {localStorage.getItem('name') ? (
           <button
-            className="btnn"
-            style={{ fontSize: '16.5px' }}
+            className="dropDownPollLink"
+            style={{ margin: '25px' }}
             onClick={logout}
           >
             Logout

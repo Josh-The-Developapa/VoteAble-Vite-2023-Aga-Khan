@@ -1,0 +1,72 @@
+.user-card{
+    height:380px;
+    width:320px;
+    background-color: white;
+    margin-top: -160px;
+    border-radius: 10px;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.1);
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  padding:10px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.231), 0 6px 10px rgba(0, 0, 0, 0.284);
+
+}
+.about-card{
+    height:480px;
+    width:320px;
+    background-color: white;
+    margin-top: 100px;
+    border-radius: 10px;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.1);
+    display:flex;
+    flex-direction: column;
+    margin-left: 50px;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.231), 0 6px 10px rgba(0, 0, 0, 0.284);
+  z-index: 10;
+
+}
+
+.vote-now{
+    height:480px;
+    width:320px;
+    background-color: white;
+    margin-top: 250px;
+    border-radius: 10px;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.1);
+    display:flex;
+    flex-direction: column;
+    margin-left: 50px;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.231), 0 6px 10px rgba(0, 0, 0, 0.284);
+}
+
+.profile-pic{
+    height:150px;
+    width:100%;
+    margin:0;
+}
+
+.team-pic{
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  height: 250px;
+  width: 100%;
+  object-fit: cover;
+  margin:0;
+  border: none;
+}
+
+.vote-now-pic{
+  height: 250px;
+  width: 100%;
+  object-fit: cover;
+  margin:0;
+}

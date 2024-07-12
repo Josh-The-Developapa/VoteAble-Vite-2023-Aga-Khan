@@ -6,46 +6,54 @@ import React, {
   lazy,
   Suspense,
 } from 'react';
-import avatarPic from '../../assets/VoteAble-header-image-2.png';
-import './Header.css';
+import { FiMenu } from 'react-icons/fi';
 import { NavLink } from 'react-router-dom';
-import Menu from '@mui/icons-material/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
 import Context from '../../Context/Context.jsx';
-import Menuu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import avatarImg from '../../assets/avatarIcon.jpeg';
 import { useNavigate } from 'react-router-dom';
+import HeaderText from '../../assets/Header Text.svg';
+import Logo from '../../assets/Logo.svg';
+import LazyDropDown from '../Drop-down/DropDown.jsx'; // Assuming LazyDropDown is correctly imported
+import { MdOutlineAccountCircle } from 'react-icons/md';
 
-const LazyDropDown = lazy(() => import('../Drop-down/DropDown.jsx'));
+import './Header.css';
 
 const Imgs = {
-  avatarPic,
-  avatarImg,
+  avatarPic: '../../assets/VoteAble-header-image-2.png',
+  avatarImg: '../../assets/avatarIcon.jpeg',
 };
 
 const Header = React.memo(function Header(props) {
+  function formatName(name) {
+    if (!name) return '';
+    let nameParts = name.split(' ');
+    let firstName = nameParts[0].toLowerCase();
+    firstName = firstName.split('');
+    firstName[0] = firstName[0].toUpperCase();
+    firstName = firstName.join('');
+    let lastNamesInitials = nameParts
+      .slice(1)
+      .map((n) => n.charAt(0))
+      .join('.');
+    return `${firstName} ${lastNamesInitials}`;
+  }
   const ctx = useContext(Context);
   const navigate = useNavigate();
   const [isLoggedOut, setIsLoggedOut] = useState(false);
-  const [banchorEl, setBanchorEl] = React.useState(null);
+  const [menuAnchorEl, setMenuAnchorEl] = useState(null);
 
-  const bopen = Boolean(banchorEl);
+  const isMenuOpen = Boolean(menuAnchorEl);
 
-  const bhandleClick = (event) => {
-    setBanchorEl(event.currentTarget);
+  const handleMenuClick = (event) => {
+    setMenuAnchorEl(event.currentTarget);
   };
-  const bhandleClose = () => {
-    setBanchorEl(null);
+
+  const handleMenuClose = () => {
+    setMenuAnchorEl(null);
   };
 
   const logout = useCallback(async () => {
-    localStorage.removeItem('name');
-    localStorage.removeItem('Student_ID');
-    localStorage.removeItem('gender');
-    localStorage.removeItem('password');
-    localStorage.removeItem('class');
-    localStorage.removeItem('house');
-
+    localStorage.clear();
     setIsLoggedOut(true);
   }, []);
 
@@ -61,77 +69,77 @@ const Header = React.memo(function Header(props) {
       <Suspense fallback={<div></div>}>
         {ctx.isDrop ? <LazyDropDown message={props.message} /> : ''}
       </Suspense>
-      <div className="navBar">
-        <Menu
-          className="Menu"
-          style={{ fontSize: '30px' }}
-          onClick={() => {
-            ctx.setIsDropVal(true);
-          }}
-        />
-        <NavLink to="/home" style={{ height: '50px' }}>
-          <img
-            src={Imgs.avatarPic}
-            alt="header"
-            style={{ objectFit: 'contain', height: '50px' }}
+      <div className="headerContainer">
+        <div className="menuWrapper">
+          <FiMenu
+            className="menuIcon"
+            style={{ fontSize: '30px', marginRight: '-10px' }}
+            onClick={() => {
+              ctx.setIsDropVal(true);
+            }}
           />
-        </NavLink>
+
+          <div className="logoWrapper">
+            <NavLink to="/home" className="logoLink">
+              <img src={Logo} alt="header" className="logoImage" />
+              <img src={HeaderText} alt="header" className="headerTextImage" />
+            </NavLink>
+          </div>
+        </div>
         {!localStorage.getItem('name') ? (
-          <NavLink to="/login" className="popo">
+          <NavLink to="/login" className="pollLink">
             Login
           </NavLink>
         ) : (
           ''
         )}
         {localStorage.getItem('name') ? (
-          <div>
-           <NavLink
-              to="/polls"
-              className='popo'
-                // style={{ textDecoration: 'none', color: 'black', textAlign:'center' }}
-                onClick={() => {
-                  ctx.setIsDropVal(false);
-                }}
+          <div
+            className="profileWrapper"
+            title="see-profile"
+            onClick={() => {
+              navigate('/account');
+            }}
+          >
+            <MdOutlineAccountCircle className="avatarImage" />
+            {/* <img src={Imgs.avatarImg} alt="avatarImg" className="avatarImage" /> */}
+            <p
+              style={{
+                marginRight: '10px',
+                marginTop: '10px',
+                marginBottom: '10px',
+              }}
             >
-              Poll Hub
-              </NavLink>
+              {formatName(localStorage.getItem('name'))}
+            </p>
           </div>
         ) : (
           ''
         )}
+        {/* {localStorage.getItem('name') ? (
+          <div>
+            <NavLink
+              to="/polls"
+              className="pollLink"
+              onClick={() => {
+                ctx.setIsDropVal(false);
+              }}
+            >
+              Poll Hub
+            </NavLink>
+          </div>
+        ) : (
+          ''
+        )} */}
 
         {localStorage.getItem('name') ? (
           <button
-            className="btn-n"
+            className="pollLink"
             onClick={logout}
-            style={{ fontSize: '16px' }}
+            style={{ backgroundColor: '#000000' }}
           >
-            Logout
+            Log Out
           </button>
-        ) : (
-          ''
-        )}
-        {localStorage.getItem('name') ? (
-          <div
-            className="profile-tab-btn"
-            title="see-profile"
-            id="ff"
-            style={{ padding: '10px' }}
-          >
-            <img src={Imgs.avatarImg} alt="avatarImg" className="avatarImg" />
-            <p
-              className="h5"
-              style={{
-                margin: '10px',
-                whiteSpace: 'nowrap',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-                maxWidth: '175px',
-              }}
-            >
-              {localStorage.getItem('name')}
-            </p>
-          </div>
         ) : (
           ''
         )}

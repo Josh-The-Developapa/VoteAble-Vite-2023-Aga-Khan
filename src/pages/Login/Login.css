@@ -1,10 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
 
+@font-face {
+   font-family: "Kumbh Sans", sans-serif;
+    src: url(../../assets/fonts/Fontspring-DEMO-mercenary-medium.otf) format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
   padding: 0;
   margin: 0;
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  background-color: #4600b6;
+ font-family: "Kumbh Sans", sans-serif;
+  background-color: #ffffff;
 }
 #root {
   height: 100vh;
@@ -14,7 +21,7 @@ body {
   position: relative;
   object-fit: contain;
   top: 15px;
-  height: 80px;
+  height: 60px;
 }
 * {
   box-sizing: border-box;
@@ -26,21 +33,25 @@ body {
   justify-content: center;
   text-align: center;
   height: 100vh;
+  width:100vw;
   align-items: center;
-  background-color: #4600b6;
+  background-color: whitesmoke;
 }
 
 .joinInnerContainer {
+  margin-top: 20px;
   padding-left: 30px;
   padding-bottom: 30px;
   padding-right: 30px;
+  padding-top: 35px;
+  margin-right: 150px;
   width: 360px;
   background-color: #ffffff;
-  border-radius: 20px;
+  border-radius: 5px;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  animation: fadeInAnimation ease 3s;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
+  animation: slideIn 0.8s forwards;
+  box-shadow: 5px 10px 10px 10px rgba(0, 0, 0, 0.2);
+  z-index: 10;
 }
 h3 {
   position: absolute;
@@ -48,28 +59,32 @@ h3 {
   color: white;
 }
 
-@keyframes fadeInAnimation {
-  0% {
+@keyframes slideIn {
+  from {
+    transform: translateY(10%);
     opacity: 0;
   }
-  100% {
+  to {
+    transform: translateY(0);
     opacity: 1;
   }
 }
 
 .joinInput {
   border: 2px solid black;
-  border-radius: 15px;
+  border-radius: 5px;
   padding: 10px 15px;
   width: 100%;
   margin-top: 10px;
   margin-bottom: 10px;
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /*font-family: "Kumbh Sans", sans-serif; */
 }
 
 .heading {
   color: black;
-  font-size: 2.5em;
+  font-size: 45px;
+ font-family: "Kumbh Sans", sans-serif;
+
 }
 .ALSU {
   text-decoration: none;
@@ -93,20 +108,21 @@ h3 {
 .button {
   cursor: pointer;
   color: #fff !important;
-  text-transform: uppercase;
   text-decoration: none;
   background: #4600b6;
   padding: 10px;
-  border-radius: 25px;
+  border-radius: 5px;
   display: inline-block;
   border: none;
   width: 100%;
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+ font-family: "Kumbh Sans", sans-serif;
 }
 
 .mt-20 {
   margin-bottom: 10px;
   margin-top: 20px;
+ font-family: "Kumbh Sans", sans-serif;
+
 }
 .button:focus {
   outline: 0;

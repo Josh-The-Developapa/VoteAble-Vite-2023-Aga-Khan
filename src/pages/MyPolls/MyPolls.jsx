@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './MyPolls.css';
 import Header from '../../components/Header/Header.jsx';
-import { Link } from 'react-router-dom';
-import CopyBoard from 'react-copy-to-clipboard';
 import Poll from '../Polls/Poll/Poll.jsx';
+import PollSVG from '../../assets/Poll.svg';
 
-function Home() {
+function MyPolls() {
   const [copy, setCopy] = useState(true);
   const [signupFirstErr, setSignupFirstErr] = useState(false);
   const [error, setError] = useState('');
@@ -17,8 +16,7 @@ function Home() {
 
     const myPolls = async () => {
       setIsLoading(true);
-
-      const res = await fetch('https://voteable-backend.onrender.com/v1/myPolls', {
+      const res = await fetch('http://localhost:8000/v1/myPolls', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -55,18 +53,30 @@ function Home() {
       <div
         className="FlexBG"
         style={{
-          backgroundImage: 'linear-gradient(180deg,#17005c, #4600b6)',
+          // backgroundImage: 'linear-gradient(180deg,#17005c, #4600b6)',
           flexDirection: 'row',
         }}
       >
         <Header />
+        <img
+          src={PollSVG}
+          alt="Polls background SVG"
+          style={{
+            position: 'fixed',
+            left: '50%',
+            height: '400px',
+            width: '400px',
+            top: '30px',
+            // zIndex: 0,
+          }}
+        />
         {signupFirstErr && (
           <div className="pollc">
             <h1>Login First to access polls</h1>
             <p style={{ marginLeft: '10px', marginRight: '10px' }}>
               Please login with valid credentials to vote as a student of Aga
-              Khan High School, Kampala. <br /> <br />Please end the
-              shenanigans and stop gallivanting
+              Khan High School, Kampala. <br /> <br />
+              Please end the shenanigans and stop gallivanting
             </p>
           </div>
         )}
@@ -87,9 +97,7 @@ function Home() {
         )}
 
         {polls && !isLoading
-          ? polls.map((poll) => (
-              <Poll key={poll._id} pollId={poll._id} />
-            ))
+          ? polls.map((poll) => <Poll key={poll._id} pollId={poll._id} />)
           : ''}
 
         {!polls && !isLoading ? (
@@ -97,9 +105,9 @@ function Home() {
             <h1>{error}</h1>
             {error === 'Student account does not exist' ? (
               <p>
-                The ID that you entered does not belong to a student of Aga
-                Khan High School, Kampala. <br /> <br />Please end the
-                shenanigans and stop gallivanting
+                The ID that you entered does not belong to a student of Aga Khan
+                High School, Kampala. <br /> <br />
+                Please end the shenanigans and stop gallivanting
               </p>
             ) : (
               ''
@@ -109,9 +117,8 @@ function Home() {
           ''
         )}
       </div>
-
     </div>
   );
 }
 
-export default Home;
+export default MyPolls;

@@ -43,17 +43,14 @@ function Results() {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     async function poll() {
       setIsLoading(true);
-      const res = await fetch(
-        `https://voteable-backend.onrender.com/v1/poll/${pollId}`,
-        {
-          method: 'GET',
-        }
-      );
+      const res = await fetch(`http://localhost:8000/v1/poll/${pollId}`, {
+        method: 'GET',
+      });
       setIsLoading(false);
       const data = await res.json();
       if (data.error) {
         setPollNotFound('Poll not found, ID is incorrect');
-        return
+        return;
       } else {
         setQuestion(data.data.question);
         setOptions(data.data.options);
@@ -140,9 +137,9 @@ function Results() {
               marginTop: '25px',
             }}
           >
-            <h1 style={{ color: 'white' }}>{question}</h1>
-            <p style={{ color: 'white' }}>
-              <i>Refresh to change slice colours</i>
+            <h1 style={{ color: '#000000' }}>{question}</h1>
+            <p style={{ color: '#000000', fontFamily: 'Kumbh Sans' }}>
+              Refresh to change slice colours
             </p>
             <div className="dNut">
               {/* <h2>{question}</h2><br /> */}

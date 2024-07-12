@@ -17,16 +17,32 @@ function CreatePoll() {
   const [images, setImages] = useState([]);
   const [selectedClass, setSelectedClass] = useState('');
   const [selectedHouse, setSelectedHouse] = useState('');
-  const handleClassChange = (event) => {
-    setSelectedClass(event.target.value);
-    if (selectedClass) setOptionErr('');
-  };
-  const handleHouseChange = (event) => {
-    setSelectedHouse(event.target.value);
-    if (selectedHouse) setOptionErr('');
-  };
-  const inputRef = useRef();
+  const [pollClass, setPollClass] = useState('');
+  const [pollHouse, setPollHouse] = useState('');
+  const [optionClass, setOptionClass] = useState('');
+  const [optionHouse, setOptionHouse] = useState('');
 
+  const handleClassChange = (event) => {
+    setPollClass(event.target.value);
+  };
+
+  const handleHouseChange = (event) => {
+    setPollHouse(event.target.value);
+  };
+
+  const handleOptionClassChange = (event, index) => {
+    const newOptions = [...options];
+    newOptions[index].class = event.target.value;
+    setOptions(newOptions);
+  };
+
+  const handleOptionHouseChange = (event, index) => {
+    const newOptions = [...options];
+    newOptions[index].house = event.target.value;
+    setOptions(newOptions);
+  };
+
+  const inputRef = useRef();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -71,9 +87,16 @@ function CreatePoll() {
     }
 
     const updatedOptions = [...options];
-    updatedOptions.push({ option, image });
+    updatedOptions.push({
+      option,
+      image,
+      class: optionClass,
+      house: optionHouse,
+    });
     setOptions(updatedOptions);
     setOption('');
+    setOptionClass('');
+    setOptionHouse('');
 
     if (image) {
       const updatedImages = [...images];
@@ -89,45 +112,39 @@ function CreatePoll() {
   };
 
   const createPoll = async () => {
-    const finalOptions = options.map((opt) => {
-      if (opt.image) {
-        return { text: opt.option, photo: opt.image.name };
-      } else {
-        return { text: opt.option };
-      }
-    });
+    const finalOptions = options.map((opt) => ({
+      text: opt.option,
+      photo: opt.image ? opt.image.name : undefined,
+      class: opt.class,
+      house: opt.house,
+    }));
 
     try {
-      const res = await fetch(
-        'https://voteable-backend.onrender.com/v1/create-poll',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
+      const res = await fetch('http://localhost:8000/v1/create-poll', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          question,
+          options: finalOptions,
+          owner: {
+            name: localStorage.getItem('name'),
+            password: localStorage.getItem('password'),
+            gender: localStorage.getItem('gender'),
           },
-          body: JSON.stringify({
-            question: question,
-            options: finalOptions,
-            owner: {
-              name: localStorage.getItem('name'),
-              password: localStorage.getItem('password'),
-              gender: localStorage.getItem('gender'),
-            },
-            class: selectedClass,
-            house: selectedHouse,
-          }),
-        }
-      );
+          class: pollClass,
+          house: pollHouse,
+        }),
+      });
 
       if (res.ok) {
         navigate('/polls');
-      }
-
-      const data = res.data;
-
-      if (data.error === 'You have to login / signup to create a poll') {
-        setOptionErr('You have to login to create a poll');
-        return
+      } else {
+        const data = await res.json();
+        if (data.error === 'You have to login / signup to create a poll') {
+          setOptionErr('You have to login to create a poll');
+        }
       }
     } catch (error) {
       console.error('Error creating poll:', error);
@@ -140,7 +157,7 @@ function CreatePoll() {
       style={{ backgroundImage: 'linear-gradient(180deg,#17005c, #4600b6)' }}
     >
       <Header />
-      <div className="form" style={{ marginTop: '10%' }}>
+      <div className="form" style={{ marginTop: '75px' }}>
         <h1 style={{ marginBottom: '5px' }}>Create Poll</h1>
         <h2>{question}</h2>
         {!formClosed ? (
@@ -170,9 +187,9 @@ function CreatePoll() {
                   key={index}
                   style={{
                     display: 'flex',
-                    flexDirection: 'row',
+                    flexDirection: 'column',
                     justifyContent: 'flex-start',
-                    alignItems: 'center',
+                    alignItems: 'flex-start',
                     marginBottom: '15px',
                   }}
                 >
@@ -181,9 +198,54 @@ function CreatePoll() {
                       className="optionImg"
                       src={URL.createObjectURL(option.image)}
                       alt="Option Image"
+                      style={{ maxWidth: '100px', marginBottom: '10px' }}
                     />
                   )}
-                  <li style={{ marginLeft: '25px' }}>{option.option}</li>
+                  <li style={{ marginLeft: '25px', marginBottom: '5px' }}>
+                    {option.option}
+                  </li>
+                  <select
+                    value={option.class}
+                    onChange={(event) => handleOptionClassChange(event, index)}
+                    className="joinInput mt-10"
+                    style={{
+                      padding: '8px',
+                      border: '1px solid #ccc',
+                      borderRadius: '4px',
+                      fontSize: '16px',
+                      width: '100%',
+                      marginBottom: '5px',
+                    }}
+                  >
+                    <option value="">Select a class</option>
+                    <option value="N/A">N/A</option>
+                    <option value="Y7">Y7</option>
+                    <option value="Y8">Y8</option>
+                    <option value="Y9">Y9</option>
+                    <option value="Y10">Y10</option>
+                    <option value="Y11">Y11</option>
+                    <option value="IB1">IB1</option>
+                    <option value="IB2">IB2</option>
+                  </select>
+                  <select
+                    value={option.house}
+                    onChange={(event) => handleOptionHouseChange(event, index)}
+                    className="joinInput"
+                    style={{
+                      padding: '8px',
+                      border: '1px solid #ccc',
+                      borderRadius: '4px',
+                      fontSize: '16px',
+                      width: '100%',
+                    }}
+                  >
+                    <option value="">Select a house</option>
+                    <option value="N/A">N/A</option>
+                    <option value="Hawks">Hawks</option>
+                    <option value="Falcons">Falcons</option>
+                    <option value="Eagles">Eagles</option>
+                    <option value="Kites">Kites</option>
+                  </select>
                 </div>
               ))}
             </ol>
@@ -213,50 +275,6 @@ function CreatePoll() {
             {optionErr && <p className="passp">{optionErr}</p>}
             {fileErr && <p className="passp">{fileErr}</p>}
             <button className="button mt-20">Add option</button>
-
-            <select
-              id="classDropdown"
-              value={selectedClass}
-              onChange={handleClassChange}
-              className="joinInput mt-10"
-              style={{
-                padding: '8px',
-                border: '1px solid #ccc',
-                borderRadius: '4px',
-                fontSize: '16px',
-                width: '100%',
-              }}
-            >
-              <option value="">Select a class</option>
-              <option value="N/A">N/A</option>
-              <option value="Y7">Y7</option>
-              <option value="Y8">Y8</option>
-              <option value="Y9">Y9</option>
-              <option value="Y10">Y10</option>
-              <option value="Y11">Y11</option>
-              <option value="IB1">IB1</option>
-              <option value="IB2">IB2</option>
-            </select>
-            <select
-              id="houseDropdown"
-              value={selectedHouse}
-              onChange={handleHouseChange}
-              className="joinInput"
-              style={{
-                padding: '8px',
-                border: '1px solid #ccc',
-                borderRadius: '4px',
-                fontSize: '16px',
-                width: '100%',
-              }}
-            >
-              <option value="">Select a house</option>
-              <option value="N/A">N/A</option>
-              <option value="Hawks">Hawks</option>
-              <option value="Falcons">Falcons</option>
-              <option value="Eagles">Eagles</option>
-              <option value="Kites">Kites</option>
-            </select>
           </form>
         ) : null}
         <div
@@ -266,7 +284,51 @@ function CreatePoll() {
             alignItems: 'center',
             marginTop: '15px',
           }}
-        ></div>
+        >
+          <select
+            id="classDropdown"
+            value={pollClass}
+            onChange={handleClassChange}
+            className="joinInput mt-10"
+            style={{
+              padding: '8px',
+              border: '1px solid #ccc',
+              borderRadius: '4px',
+              fontSize: '16px',
+              width: '100%',
+            }}
+          >
+            <option value="">Select a class</option>
+            <option value="N/A">N/A</option>
+            <option value="Y7">Y7</option>
+            <option value="Y8">Y8</option>
+            <option value="Y9">Y9</option>
+            <option value="Y10">Y10</option>
+            <option value="Y11">Y11</option>
+            <option value="IB1">IB1</option>
+            <option value="IB2">IB2</option>
+          </select>
+          <select
+            id="houseDropdown"
+            value={pollHouse}
+            onChange={handleHouseChange}
+            className="joinInput mt-10"
+            style={{
+              padding: '8px',
+              border: '1px solid #ccc',
+              borderRadius: '4px',
+              fontSize: '16px',
+              width: '100%',
+            }}
+          >
+            <option value="">Select a house</option>
+            <option value="N/A">N/A</option>
+            <option value="Hawks">Hawks</option>
+            <option value="Falcons">Falcons</option>
+            <option value="Eagles">Eagles</option>
+            <option value="Kites">Kites</option>
+          </select>
+        </div>
         <button
           className="button mt-20"
           onClick={() => {
@@ -281,8 +343,8 @@ function CreatePoll() {
               setOptionErr('You need to add more than 1 option');
             }
 
-            if (!selectedClass) setOptionErr('Please select a class');
-            if (!selectedHouse) setOptionErr('Please select a house');
+            if (!pollClass) setOptionErr('Please select a class for the poll');
+            if (!pollHouse) setOptionErr('Please select a house for the poll');
 
             createPoll();
           }}

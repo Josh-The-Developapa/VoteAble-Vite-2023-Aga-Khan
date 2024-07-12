@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import avatarPic from '../../assets/VoteAble logo.png';
+import avatarPic from '../../assets/Logo.svg';
 import Header from '../../components/Header/Header.jsx';
+import HomepageSVG from '../../assets/Blocks.svg';
 // import Context from "../../Context/Context";
-
 import './Login.css';
 
 export default function Login() {
@@ -18,59 +18,54 @@ export default function Login() {
 
   const handleGenderChange = (event) => {
     setSelectedGender(event.target.value);
-  }
+  };
 
   async function user() {
-      const res = await fetch(
-        `https://voteable-backend.onrender.com/v1/user`,
-        {
-          method: 'POST',
-           headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            Student_ID: name,
-            password: password,
-          }),
-        }
-      );
-    const data = await res.json()
+    const res = await fetch(`http://localhost:8000/v1/user`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        Student_ID: name,
+        password: password,
+      }),
+    });
+    const data = await res.json();
 
-       if (data.error == 'Invalid password') {
-         setPassErr(data.error)
-         return
+    if (data.error == 'Invalid password') {
+      setPassErr(data.error);
+      return;
     }
 
     if (data.error == 'Invalid student ID, please try again') {
-      setNameErr(data.error)
-      return
+      setNameErr(data.error);
+      return;
     }
-    return data
-    }
+    return data;
+  }
 
   const login = async () => {
-    if (
-      !name ||
-      !password ||
-      !selectedGender
-    ) {
-      return
+    if (!name || !password || !selectedGender) {
+      return;
     }
 
-    const data2 = await user()
-
+    const data2 = await user();
+    console.log(data2);
     if (data2.error) {
-      return
+      return;
     }
 
     localStorage.setItem('Student_ID', name);
-    localStorage.setItem('name', `${data2.name}`);
+    localStorage.setItem('name', `${data2.user.name}`);
     localStorage.setItem('password', password);
     localStorage.setItem('gender', selectedGender);
+    localStorage.setItem('class', data2.user.class);
+    localStorage.setItem('house', data2.user.house);
 
     if (!nameErr || !passErr) {
-      navigate('/polls');
-   }
+      navigate('/account');
+    }
   };
 
   useEffect(() => {
@@ -80,12 +75,25 @@ export default function Login() {
   return (
     <div className="joinOuterContainer">
       <Header />
-      <div className="joinInnerContainer" style={{ marginTop: '200px' }}>
+      <img
+        src={HomepageSVG}
+        style={{
+          height: '91vh',
+          width: '40vw',
+          // backgroundColor: 'green',
+          position: 'absolute',
+          top: '78px',
+          left: '-15px',
+          padding: 0,
+          objectFit: 'cover',
+        }}
+      />
+      <div className="joinInnerContainer">
         <img src={avatarPic} className="avPic" alt="VoteAble" />
-        <h1 className="heading">Login</h1>
+        <h2 className="heading">Login</h2>
         <div>
           <input
-            name="name"
+            name="username"
             style={{ fontSize: '17px' }}
             value={name}
             placeholder="Student ID"
@@ -96,10 +104,14 @@ export default function Login() {
               setNameErr('');
             }}
             onBlur={() => {
-              if (!name) setNameErr('Please enter a valid name');
+              if (!name) setNameErr('Please enter a valid ID');
             }}
           />
-          {nameErr && <p className="namep">{nameErr}</p>}
+          {nameErr && (
+            <p className="namep" style={{ fontFamily: 'Kumbh Sans' }}>
+              {nameErr}
+            </p>
+          )}
         </div>
         <div>
           <input
@@ -117,7 +129,11 @@ export default function Login() {
               if (!password) setPassErr('Please enter a valid password');
             }}
           />
-          {passErr && <p className="passp">{passErr}</p>}
+          {passErr && (
+            <p className="passp" style={{ fontFamily: 'Kumbh Sans' }}>
+              {passErr}
+            </p>
+          )}
         </div>
         <div
           style={{
@@ -127,50 +143,6 @@ export default function Login() {
             marginTop: '15px',
           }}
         >
-          {/* <label htmlFor="classDropdown" style={{ marginBottom: '5px', fontSize: '16px' }}>Class:</label> */}
-          {/* <select
-            id="classDropdown"
-            value={selectedClass}
-            onChange={handleClassChange}
-            className="joinInput mt-10"
-            style={{
-              padding: '8px',
-              border: '1px solid #ccc',
-              borderRadius: '4px',
-              fontSize: '16px',
-              width: '100%',
-            }}
-          >
-            <option value="">Select a class</option>
-            <option value="Y7">Y7</option>
-            <option value="Y8">Y8</option>
-            <option value="Y9">Y9</option>
-            <option value="Y10">Y10</option>
-            <option value="Y11">Y11</option>
-            <option value="IB1">IB1</option>
-            <option value="IB2">IB2</option>
-          </select> */}
-          {/* House Selection */}
-          {/* <label htmlFor="houseDropdown" style={{ marginTop: '10px', marginBottom: '5px', fontSize: '16px' }}>House:</label> */}
-          {/* <select
-            id="houseDropdown"
-            value={selectedHouse}
-            onChange={handleHouseChange}
-            className="joinInput"
-            style={{
-              padding: '8px',
-              border: '1px solid #ccc',
-              borderRadius: '4px',
-              fontSize: '16px',
-              width: '100%',
-            }}
-          >
-            <option value="">Select a house</option>
-            <option value="Hawks">Hawks</option>
-            <option value="Falcons">Falcons</option>
-            <option value="Eagles">Eagles</option>
-            <option value="Kites">Kites</option>
-          </select> */}
           <form
             style={{
               display: 'flex',
@@ -179,7 +151,7 @@ export default function Login() {
               marginTop: '15px',
             }}
           >
-            <label style={{ marginRight: '20px' }}>
+            <label style={{ marginRight: '20px', fontFamily: 'Kumbh Sans' }}>
               <input
                 type="radio"
                 value="male"
@@ -189,7 +161,7 @@ export default function Login() {
               />
               Male
             </label>
-            <label>
+            <label style={{ fontFamily: 'Kumbh Sans' }}>
               <input
                 type="radio"
                 value="female"
@@ -204,11 +176,18 @@ export default function Login() {
         <button
           className={'button mt-20'}
           onClick={login}
-          style={{ padding: '5px' }}
+          style={{
+            paddingTop: '15px',
+            paddingBottom: '15px',
+            backgroundImage:
+              'linear-gradient(90deg,#5c0096,#17005c, rgb(96, 0, 81))',
+            fontFamily: 'Mercenary',
+          }}
         >
-          <p style={{ fontSize: '17px' }}>Login</p>
+          <p style={{ fontSize: '20px', fontFamily: 'Kumbh Sans', margin: 0 }}>
+            Login
+          </p>
         </button>
-        
       </div>
     </div>
   );

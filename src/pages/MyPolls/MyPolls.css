@@ -99,60 +99,11 @@
   margin-bottom: 40px;
   height: 310px;
   width: 320px;
+  margin-top: 150px;
 }
-
 .FlexBG {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
 }
 
-.FlexBG:nth-child(1) {
-  margin-top: 20%;
-}
-
-@media screen and (min-width: 670px) {
-  .FlexBG:nth-child(1) {
-    margin-top: 15%;
-  }
-}
-
-@media screen and (min-width: 804px) {
-  .FlexBG:nth-child(1) {
-    margin-top: 10%;
-  }
-}
-
-@media screen and (min-width: 870px) {
-  .FlexBG:nth-child(1) {
-    margin-top: 5%;
-  }
-}
-
-@media screen and (max-width: 410px) {
-  .FlexBG:nth-child(1) {
-    margin-top: 30%;
-  }
-}
-
-@media screen and (max-width: 320px) {
-  .FlexBG:nth-child(1) {
-    margin-top: 40%;
-  }
-}
-
-/* @media screen and (min-width: 620px) {
-  .cDivv {
-    position: fixed;
-    width: 150px;
-    top: 100%;
-  }
-}
-
-@media screen and (max-width: 620px) {
-  .cDivv {
-    position: fixed;
-    width: 150px;
-    bottom: 0;
-  }
-} */

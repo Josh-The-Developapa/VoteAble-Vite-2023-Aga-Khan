@@ -21,7 +21,7 @@ export default function Reset() {
   const resetPass = async function () {
     if (password) {
       const res = await fetch(
-        `https://voteable-backend.onrender.com/v1/reset-password/${resetToken}`,
+        `http://localhost:8000/v1/reset-password/${resetToken}`,
         {
           method: 'POST',
           credentials: 'include',
@@ -40,15 +40,15 @@ export default function Reset() {
 
       if (data.error === 'Invalid token') {
         setPassErr(invToken);
-        return
-        return
+        return;
+        return;
       } else if (data.error !== 'Invalid token') {
         setPassErr('');
       }
 
       if (data.error === 'You are already logged in') {
         setPassErr(signedInP);
-        return
+        return;
       }
     }
 

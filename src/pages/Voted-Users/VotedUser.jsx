@@ -24,12 +24,9 @@ function VotedUser() {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 
     async function votedUsers(param) {
-      const res = await fetch(
-        `https://voteable-backend.onrender.com/v1/voted-users/${param}`,
-        {
-          method: 'GET',
-        }
-      );
+      const res = await fetch(`http://localhost:8000/v1/voted-users/${param}`, {
+        method: 'GET',
+      });
 
       const data = await res.json();
 
@@ -37,7 +34,7 @@ function VotedUser() {
 
       if (data.error) {
         setErr(data.error);
-        return
+        return;
       }
       setIsLoading(false);
     }
@@ -48,12 +45,9 @@ function VotedUser() {
     // eslint-disable-next-line
 
     async function poll() {
-      const res = await fetch(
-        `https://voteable-backend.onrender.com/v1/poll/${pollId}`,
-        {
-          method: 'GET',
-        }
-      );
+      const res = await fetch(`http://localhost:8000/v1/poll/${pollId}`, {
+        method: 'GET',
+      });
       const data = await res.json();
       setQuestion(data.data.question);
     }
@@ -78,7 +72,7 @@ function VotedUser() {
           <h1>Voted Users</h1>
           <h3>{err}</h3>
           {isData.length !== 0 ? (
-            <ol type='1' className="ulvuc">
+            <ol type="1" className="ulvuc">
               {isData.map((option) => {
                 return (
                   <li key={id} style={{ margin: '15px' }}>

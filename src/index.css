@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&display=swap');
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  background-image: linear-gradient(180deg, #17005c, #17005c);
+  font-family: "Kumbh Sans";
+  background-image: #ffffff;
   /* line-height: 1.5;
   font-weight: 400; */
 
@@ -23,7 +25,10 @@
   width: 100%;
 } */
 
-/* a {
+p, h2, h1, h3{
+  font-family: "Kumbh Sans";
+}
+a {
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
@@ -63,7 +68,7 @@ button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
-
+/* 
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
