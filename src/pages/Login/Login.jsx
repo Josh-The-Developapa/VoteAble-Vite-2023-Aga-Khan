@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import avatarPic from '../../assets/Logo.svg';
 import Header from '../../components/Header/Header.jsx';
 import HomepageSVG from '../../assets/Blocks.svg';
+import LoginSVG from '../../assets/Account.svg';
+
 import './Login.css';
 
 export default function Login() {
@@ -11,11 +13,16 @@ export default function Login() {
   const [nameErr, setNameErr] = useState('');
   const [passErr, setPassErr] = useState('');
   const [selectedGender, setSelectedGender] = useState('');
+  const [selectedHouse, setSelectedHouse] = useState('');
 
   const navigate = useNavigate();
 
   const handleGenderChange = (event) => {
     setSelectedGender(event.target.value);
+  };
+
+  const handleHouseChange = (event) => {
+    setSelectedHouse(event.target.value);
   };
 
   async function user() {
@@ -27,16 +34,17 @@ export default function Login() {
       body: JSON.stringify({
         Student_ID: name,
         password: password,
+        house: selectedHouse,
       }),
     });
     const data = await res.json();
 
-    if (data.error == 'Invalid password') {
+    if (data.error === 'Invalid password') {
       setPassErr(data.error);
       return;
     }
 
-    if (data.error == 'Invalid student ID, please try again') {
+    if (data.error === 'Invalid student ID, please try again') {
       setNameErr(data.error);
       return;
     }
@@ -44,7 +52,7 @@ export default function Login() {
   }
 
   const login = async () => {
-    if (!name || !password || !selectedGender) {
+    if (!name || !password || !selectedGender || !selectedHouse) {
       return;
     }
 
@@ -59,7 +67,7 @@ export default function Login() {
     localStorage.setItem('password', password);
     localStorage.setItem('gender', selectedGender);
     localStorage.setItem('class', data2.user.class);
-    localStorage.setItem('house', data2.user.house);
+    localStorage.setItem('house', selectedHouse);
 
     if (!nameErr || !passErr) {
       navigate('/account');
@@ -72,20 +80,8 @@ export default function Login() {
 
   return (
     <div className="joinOuterContainer">
-      <Header />
-      <img
-        src={HomepageSVG}
-        style={{
-          height: '91vh',
-          width: '40vw',
-          // backgroundColor: 'green',
-          position: 'absolute',
-          top: '78px',
-          left: '-15px',
-          padding: 0,
-          objectFit: 'cover',
-        }}
-      />
+      {/* <Header /> */}
+      <img src={HomepageSVG} className="login-svg1" />
       <div className="joinInnerContainer">
         <img src={avatarPic} className="avPic" alt="VoteAble" />
         <h2 className="heading">Login</h2>
@@ -171,6 +167,37 @@ export default function Login() {
             </label>
           </form>
         </div>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            marginTop: '15px',
+          }}
+        >
+          {/* <label style={{ fontFamily: 'Kumbh Sans', marginBottom: '5px' }}>
+            Select House:
+          </label> */}
+          <select
+            value={selectedHouse}
+            onChange={handleHouseChange}
+            style={{
+              padding: '8px',
+              border: '1px solid #ccc',
+              borderRadius: '4px',
+              fontSize: '16px',
+              width: '100%',
+              marginBottom: '5px',
+            }}
+            className="joinInput mt-10"
+          >
+            <option value="">Select a house</option>
+            <option value="Hawks">Hawks</option>
+            <option value="Falcons">Falcons</option>
+            <option value="Eagles">Eagles</option>
+            <option value="Kites">Kites</option>
+          </select>
+        </div>
         <button
           className={'button mt-20'}
           onClick={login}
@@ -187,6 +214,7 @@ export default function Login() {
           </p>
         </button>
       </div>
+      {/* <img src={LoginSVG} className="login-svg2" /> */}
     </div>
   );
 }

@@ -52,6 +52,7 @@ function Account() {
     })();
     setVoted(hasVoted);
   }, []);
+
   function formatName(name) {
     if (!name) return '';
     let nameParts = name.split(' ');
@@ -65,9 +66,10 @@ function Account() {
       .join('.');
     return `${firstName} ${lastNamesInitials}`;
   }
+
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
       <div
         style={{
           display: 'flex',

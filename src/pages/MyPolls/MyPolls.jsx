@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Carousel } from 'react-bootstrap';
+import Spinner from 'react-bootstrap/Spinner';
 import './MyPolls.css';
 import Header from '../../components/Header/Header.jsx';
 import Poll from '../Polls/Poll/Poll.jsx';
@@ -8,8 +10,10 @@ function MyPolls() {
   const [copy, setCopy] = useState(true);
   const [signupFirstErr, setSignupFirstErr] = useState(false);
   const [error, setError] = useState('');
-  const [polls, setPolls] = useState();
+  const [polls, setPolls] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [currentIndex, setCurrentIndex] = useState(0); // Track current carousel index
+  const carouselRef = useRef(null);
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
@@ -51,16 +55,36 @@ function MyPolls() {
     }
   }, []);
 
+  const handleNext = () => {
+    setTimeout(() => {
+      if (carouselRef.current) {
+        carouselRef.current.next();
+      }
+    }, 2000); // wait for 5 seconds
+  };
+
+  const handleSelect = (selectedIndex, e) => {
+    console.log('Carousel selected index:', selectedIndex);
+    setCurrentIndex(selectedIndex);
+  };
+
+  const handleProgressBarClick = (e) => {
+    const progressBar = e.target;
+    const clickPosition =
+      (e.clientX - progressBar.getBoundingClientRect().left) /
+      progressBar.offsetWidth;
+    const newIndex = Math.floor(clickPosition * polls.length);
+    console.log('Progress bar clicked:', clickPosition, newIndex);
+    setCurrentIndex(newIndex);
+    if (carouselRef.current) {
+      carouselRef.current.to(newIndex);
+    }
+  };
+
   return (
     <div>
-      <div
-        className="FlexBG"
-        style={{
-          // backgroundImage: 'linear-gradient(180deg,#17005c, #4600b6)',
-          flexDirection: 'row',
-        }}
-      >
-        <Header />
+      <div className="FlexBG" style={{ flexDirection: 'row' }}>
+        {/* <Header /> */}
         <img
           src={PollSVG}
           alt="Polls background SVG"
@@ -69,8 +93,8 @@ function MyPolls() {
             left: '50%',
             height: '400px',
             width: '400px',
-            top: '30px',
-            // zIndex: 0,
+            top: '15px',
+            zIndex: 10,
           }}
         />
         {signupFirstErr && (
@@ -84,24 +108,56 @@ function MyPolls() {
           </div>
         )}
 
-        {!signupFirstErr && isLoading ? (
+        {isLoading && (
           <div
             style={{
               display: 'flex',
-              flexDirection: 'row',
-              flexWrap: 'wrap',
+              justifyContent: 'center',
+              alignItems: 'center',
+              height: '100vh',
+              width: '100%',
+              backgroundColor: 'whitesmoke',
             }}
           >
-            {/* Loading Animation */}
-            {/* You can add your loading animation here */}
+            <Spinner animation="grow" />
           </div>
+        )}
+
+        {!isLoading && polls.length > 0 ? (
+          <>
+            <div className="carousel-caption">
+              Poll {currentIndex + 1} of {polls.length}
+            </div>
+            <Carousel
+              ref={carouselRef}
+              controls={false}
+              touch={true}
+              interval={null}
+              onSelect={handleSelect}
+              indicators={false} // Hide default indicators
+              activeIndex={currentIndex} // Set activeIndex to control the current slide
+            >
+              {polls.map((poll, index) => (
+                <Carousel.Item key={poll._id}>
+                  <Poll pollId={poll._id} handleNext={handleNext} />
+                </Carousel.Item>
+              ))}
+            </Carousel>
+            <div
+              className="progress-bar-container"
+              onClick={handleProgressBarClick}
+            >
+              <div
+                className="progress-bar"
+                style={{
+                  width: `${((currentIndex + 1) / polls.length) * 100}%`,
+                }}
+              />
+            </div>
+          </>
         ) : (
           ''
         )}
-
-        {polls && !isLoading
-          ? polls.map((poll) => <Poll key={poll._id} pollId={poll._id} />)
-          : ''}
 
         {!polls && !isLoading ? (
           <div className="pollc">

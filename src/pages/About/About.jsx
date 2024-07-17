@@ -13,7 +13,7 @@ import KhushImage from '../../assets/Khush Shah.jpeg';
 function AboutVoteable() {
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
       <div className="about-container">
         <div className="about-left">
           <div
@@ -24,6 +24,7 @@ function AboutVoteable() {
               justifyContent: 'flex-start',
               width: '100%',
               padding: 0,
+              // marginTop: '20px',
               textAlign: 'left',
             }}
           >
@@ -47,8 +48,11 @@ function AboutVoteable() {
             style={{
               display: 'flex',
               flexDirection: 'column',
-              padding: '45px',
-              paddingTop: '100px',
+              padding: '15px',
+              paddingTop: '0px',
+              // marginBottom: '100px',
+              marginTop: '0px',
+              height: '50%',
             }}
           >
             <h2
@@ -80,7 +84,15 @@ function AboutVoteable() {
         <div className="about-right">
           <img src={TeamPic} alt="Our Team" className="group-pic" />
           <div className="team-intro">
-            <h2 style={{ textAlign: 'center' }}>Our Team</h2>
+            <h2
+              style={{
+                textAlign: 'center',
+                marginBottom: '25px',
+                marginTop: '25px',
+              }}
+            >
+              Our Team
+            </h2>
             <div className="team-members">
               <div className="team-member">
                 <img

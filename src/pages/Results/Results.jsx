@@ -107,7 +107,7 @@ function Results() {
       }}
     >
       <div className="joinOuterContainer">
-        <Header />
+        {/* <Header /> */}
         {isLoading ? (
           <CircularProgress
             style={{

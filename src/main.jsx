@@ -17,15 +17,16 @@ import About from './pages/About/About.jsx';
 // import App from './App'
 import './index.css';
 import Account from './pages/Account/Account.jsx';
+import Layout from './Layout/Layout.jsx';
 
 const router = createBrowserRouter([
   {
     path: '/home',
-    element: <Home />,
+    element: <Layout page={<Home />} />,
   },
   {
     path: '/*',
-    element: <NotFound />,
+    element: <Layout page={<NotFound />} />,
   },
   {
     path: '/',
@@ -33,7 +34,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/login',
-    element: <Login />,
+    element: <Layout page={<Login />} />,
   },
   // {
   //   path: '/voted-users/:pollId',
@@ -41,11 +42,11 @@ const router = createBrowserRouter([
   // },
   {
     path: '/poll/results/:pollId',
-    element: <Results />,
+    element: <Layout page={<Results />} />,
   },
   {
     path: '/create-poll',
-    element: <CreatePoll />,
+    element: <Layout page={<CreatePoll />} />,
   },
   // {
   //   path: '/poll/:pollId',
@@ -53,7 +54,7 @@ const router = createBrowserRouter([
   // },
   {
     path: '/polls',
-    element: <MyPolls />,
+    element: <Layout page={<MyPolls />} />,
   },
   // {
   //   path: '/subscribe',
@@ -77,11 +78,11 @@ const router = createBrowserRouter([
   // },
   {
     path: '/account',
-    element: <Account />,
+    element: <Layout page={<Account />} />,
   },
   {
     path: '/about',
-    element: <About />,
+    element: <Layout page={<About />} />,
   },
 ]);
 

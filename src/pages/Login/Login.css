@@ -3,7 +3,7 @@
 body {
   padding: 0;
   margin: 0;
- font-family: "Kumbh Sans", sans-serif;
+  font-family: 'Kumbh Sans', sans-serif;
   background-color: #ffffff;
 }
 #root {
@@ -23,22 +23,25 @@ body {
 .joinOuterContainer {
   padding-top: 0%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   text-align: center;
   height: 100vh;
-  width:100vw;
+  width: 100vw;
   align-items: center;
   background-color: whitesmoke;
 }
 
 .joinInnerContainer {
-  margin-top: 20px;
-  padding-left: 30px;
-  padding-bottom: 30px;
+  padding-left: 25px;
+  padding-bottom: 25px;
   padding-right: 30px;
   padding-top: 35px;
-  margin-right: 150px;
-  width: 360px;
+  margin-top: 100px;
+  margin-bottom: auto;
+  max-width: 400px;
+  width: 350px;
+  margin-left: auto;
+  margin-right: auto;
   background-color: #ffffff;
   border-radius: 5px;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -65,19 +68,18 @@ h3 {
 
 .joinInput {
   border: 2px solid black;
-  border-radius: 5px;
+  border-radius: 10px;
   padding: 10px 15px;
   width: 100%;
   margin-top: 10px;
   margin-bottom: 10px;
-  /*font-family: "Kumbh Sans", sans-serif; */
+  font-family: 'Kumbh Sans', sans-serif;
 }
 
 .heading {
   color: black;
   font-size: 45px;
- font-family: "Kumbh Sans", sans-serif;
-
+  font-family: 'Kumbh Sans', sans-serif;
 }
 .ALSU {
   text-decoration: none;
@@ -108,14 +110,13 @@ h3 {
   display: inline-block;
   border: none;
   width: 100%;
- font-family: "Kumbh Sans", sans-serif;
+  font-family: 'Kumbh Sans', sans-serif;
 }
 
 .mt-20 {
   margin-bottom: 10px;
   margin-top: 20px;
- font-family: "Kumbh Sans", sans-serif;
-
+  font-family: 'Kumbh Sans', sans-serif;
 }
 .button:focus {
   outline: 0;
@@ -123,4 +124,41 @@ h3 {
 
 .button:hover {
   background: #4a00aa;
+}
+
+@media screen and (max-width: 400px) {
+  .joinInnerContainer {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  .heading {
+    font-size: 30px;
+    font-weight: 550;
+  }
+  .avPic {
+    height: 40px;
+  }
+}
+
+@media screen and (min-width: 701px) {
+  .login-svg1 {
+    height: 100vh;
+    width: 30vw;
+    position: absolute;
+    left: -15px;
+    padding: 0;
+    object-fit: cover;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .login-svg2 {
+    position: absolute;
+    right: 0;
+    height: 250px;
+    bottom: 0;
+  }
+  .login-svg1 {
+    display: none;
+  }
 }

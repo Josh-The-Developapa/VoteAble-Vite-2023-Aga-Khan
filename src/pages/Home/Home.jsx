@@ -28,7 +28,7 @@ function Home() {
 
   return (
     <div className="flex-bg">
-      <Header />
+      {/* <Header /> */}
       <img
         src={HomepageSVG}
         className="homepage-svg"

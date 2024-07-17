@@ -105,9 +105,9 @@ function CreatePoll() {
       inputRef.current.value = null;
     }
 
-    if (updatedOptions.length < 2) {
-      setOptionErr('Enter another option');
-    }
+    // if (updatedOptions.length < 2) {
+    //   setOptionErr('Enter another option');
+    // }
   };
 
   const createPoll = async () => {
@@ -158,7 +158,7 @@ function CreatePoll() {
       className="joinOuterContainer"
       style={{ backgroundImage: 'linear-gradient(180deg,#17005c, #4600b6)' }}
     >
-      <Header />
+      {/* <Header /> */}
       <div className="form" style={{ marginTop: '75px' }}>
         <h1 style={{ marginBottom: '5px' }}>Create Poll</h1>
         <h2>{question}</h2>
@@ -219,7 +219,7 @@ function CreatePoll() {
                       marginBottom: '5px',
                     }}
                   >
-                    <option value="">Select a class</option>
+                    {/* <option value="">Select a class</option>
                     <option value="N/A">N/A</option>
                     <option value="Y7">Y7</option>
                     <option value="Y8">Y8</option>
@@ -227,7 +227,21 @@ function CreatePoll() {
                     <option value="Y10">Y10</option>
                     <option value="Y11">Y11</option>
                     <option value="IB1">IB1</option>
-                    <option value="IB2">IB2</option>
+                    <option value="IB2">IB2</option> */}
+                    <option value="">Select a class</option>
+                    <option value="N/A">N/A</option>
+                    <option value="S1S">S1S</option>
+                    <option value="S1N">S1N</option>
+                    <option value="S2S">S2S</option>
+                    <option value="S2N">S2N</option>
+                    <option value="S3S">S3S</option>
+                    <option value="S3N">S3N</option>
+                    <option value="S4S">S4S</option>
+                    <option value="S4N">S4N</option>
+                    <option value="S5S">S5S</option>
+                    <option value="S5A">S5A</option>
+                    <option value="S6S">S6S</option>
+                    <option value="S6A">S6A</option>
                   </select>
                   <select
                     value={option.house}
@@ -300,7 +314,7 @@ function CreatePoll() {
               width: '100%',
             }}
           >
-            <option value="">Select a class</option>
+            {/* <option value="">Select a class</option>
             <option value="N/A">N/A</option>
             <option value="Y7">Y7</option>
             <option value="Y8">Y8</option>
@@ -308,7 +322,17 @@ function CreatePoll() {
             <option value="Y10">Y10</option>
             <option value="Y11">Y11</option>
             <option value="IB1">IB1</option>
-            <option value="IB2">IB2</option>
+            <option value="IB2">IB2</option> */}
+            <option value="">Select a class</option>
+            <option value="N/A">N/A</option>
+            <option value="S1">S1</option>
+            <option value="S2">S2</option>
+            <option value="S3">S3</option>
+            <option value="S3N">S3N</option>
+            <option value="S4">S4</option>
+            <option value="S5A">S5A</option>
+            <option value="S5S">S5S</option>
+            <option value="S6">S6</option>
           </select>
           <select
             id="houseDropdown"
@@ -341,9 +365,9 @@ function CreatePoll() {
               setOptionErr('');
             }
 
-            if (options.length < 2) {
-              setOptionErr('You need to add more than 1 option');
-            }
+            // if (options.length < 2) {
+            //   setOptionErr('You need to add more than 1 option');
+            // }
 
             if (!pollClass) setOptionErr('Please select a class for the poll');
             if (!pollHouse) setOptionErr('Please select a house for the poll');

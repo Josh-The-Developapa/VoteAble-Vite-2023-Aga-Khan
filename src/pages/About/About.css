@@ -2,64 +2,72 @@
   display: flex;
   justify-content: flex-start;
   width: 100vw;
+  height: 100vh;
   align-items: flex-start;
   background-color: #f0f0f0;
   padding: 0;
+  /* margin-top: 70px; */
+  flex-direction: row;
 }
 
 .about-left {
-  height: 100vh;
+  height: 100%;
+  overflow-y: scroll;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: flex-start;
   width: 33.33333vw;
   background-color: #d5d5d5;
   padding: 50px;
-  padding-top: 200px;
+  /* padding-top: 80px; */
+  /* padding-bottom: 0; */
+  /* padding-top: 200px; */
   box-shadow: 10px 0 15px -5px rgba(0, 0, 0, 0.3);
   z-index: 5;
 }
 
 .about-middle {
-  height: 100vh;
+  height: 100%;
+  overflow-y: scroll;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  align-items: flex-start;
+  align-items: flex-end;
   width: 33.33333vw;
   background-color: #f0f0f0;
-  padding: 25px;
+  /* padding-top: 70px; */
   padding-bottom: 0;
   padding-left: 0;
   padding-right: 0;
+  padding-top: 0;
   margin: 0;
-  box-shadow: 10px 0 15px -5px rgba(0, 0, 0, 0.3);
+  /* box-shadow: 10px 0 15px -5px rgba(0, 0, 0, 0.3); */
   z-index: 5;
 }
 
 .about-right {
-  height: 100vh;
+  height: 100%;
   display: flex;
+  overflow-y: scroll;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   width: 33.33333vw;
   background-color: #f0f0f0;
-  padding-top: 25px;
+  /* padding-top: 25px; */
   padding-bottom: 0;
   padding-left: 0;
   padding-right: 0;
   margin: 0;
-  box-shadow: 10px 0 15px -5px rgba(0, 0, 0, 0.3);
+  /* box-shadow: 10px 0 15px -5px rgba(0, 0, 0, 0.3); */
   z-index: 5;
 }
 
-
-
 .logo2 {
   width: 100px;
-  margin-left: 80px;
+  margin-left: 20px;
+  margin-right: auto;
 }
 
 .highlight {
@@ -67,35 +75,41 @@
 }
 
 .about-left h1 {
-  font-size: 40px;
+  font-size: 35px;
   font-weight: 600;
   margin-bottom: 10px;
-  font-family: "Kumbh Sans";
-  margin-left: 80px;
+  font-family: 'Kumbh Sans';
+  margin-left: 20px;
+  margin-right: auto;
 }
 
-.about-middle h2{
-  font-family: "Kumbh Sans";
+.about-middle h2 {
+  font-family: 'Kumbh Sans';
   font-size: 30px;
   font-weight: 600;
-  margin:0;
+  margin: 0;
 }
 
 .about-description {
-  font-size: 23px;
+  font-size: 19px;
   font-weight: 350;
   line-height: 1.6;
   margin-bottom: 40px;
-  margin-left: 80px;
-  width:270px;
+  margin-left: 10px;
+  margin-right: 10px;
+  max-width: 270px;
 }
 
 .laptop-pic {
   width: 100%;
-  height:330px;
+  height: 40%;
+  /* position: absolute; */
+  bottom: 0;
   object-fit: cover;
-  margin:0;
-  
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-top: -40px;
 }
 
 .about-right h2 {
@@ -108,16 +122,27 @@
   font-size: 17px;
   line-height: 1.5;
   margin-top: 15px;
+  margin-bottom: 0px;
 }
 
 .group-pic {
-  height:320px;
-  width:100%;
+  height: 240px;
+  width: 100%;
   object-fit: cover;
   margin-bottom: 10px;
-  margin-top: 60px;
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.99), rgba(0, 0, 0, 0.99), rgba(0, 0, 0, 0));
-  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.99), rgba(0, 0, 0, 0.99), rgba(0, 0, 0, 0));
+  margin-top: 70px;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.99),
+    rgba(0, 0, 0, 0.99),
+    rgba(0, 0, 0, 0)
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.99),
+    rgba(0, 0, 0, 0.99),
+    rgba(0, 0, 0, 0)
+  );
 }
 
 .team-intro h2 {
@@ -127,21 +152,21 @@
   margin: 0;
 }
 
-.team-intro{
+.team-intro {
   display: flex;
   flex-direction: row;
-  width:100%;
+  width: 100%;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  margin:0;
+  margin: 0;
 }
 
-.team-members{
+.team-members {
   display: flex;
   flex-direction: row;
-  width:100%;
-  flex-wrap:wrap;
+  width: 100%;
+  flex-wrap: wrap;
   justify-content: flex-start;
   align-items: center;
 }
@@ -149,8 +174,8 @@
 .team-member {
   text-align: center;
   width: 30%;
-  margin-left:5px;
-  margin-right:5px;
+  margin-left: 5px;
+  margin-right: 5px;
   margin-top: 10px;
 }
 
@@ -163,9 +188,9 @@
   color: #555;
 }
 
-.member-pic{
-  height:95px;
-  width:95px;
+.member-pic {
+  height: 10vh;
+  width: 10vh;
   object-fit: cover;
   border-radius: 50px;
 }

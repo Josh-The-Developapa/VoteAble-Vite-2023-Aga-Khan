@@ -10,7 +10,7 @@ function Subscription() {
 
   return (
     <div className="FlexBG" style={{ justifyContent: 'center' }}>
-      <Header />
+      {/* <Header /> */}
       <div className="subCard">
         <img
           src={Img}
