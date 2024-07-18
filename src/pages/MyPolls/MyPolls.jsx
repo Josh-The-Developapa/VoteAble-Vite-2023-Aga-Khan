@@ -39,6 +39,7 @@ function MyPolls() {
 
       if (res.ok) {
         setPolls(data.data);
+        console.log(data.data);
       }
 
       if (data.error) {
@@ -61,6 +62,11 @@ function MyPolls() {
         carouselRef.current.next();
       }
     }, 2000); // wait for 5 seconds
+  };
+  const handleBack = () => {
+    if (carouselRef.current) {
+      carouselRef.current.back();
+    }
   };
 
   const handleSelect = (selectedIndex, e) => {
@@ -124,10 +130,7 @@ function MyPolls() {
         )}
 
         {!isLoading && polls.length > 0 ? (
-          <>
-            <div className="carousel-caption">
-              Poll {currentIndex + 1} of {polls.length}
-            </div>
+          <div>
             <Carousel
               ref={carouselRef}
               controls={false}
@@ -139,22 +142,31 @@ function MyPolls() {
             >
               {polls.map((poll, index) => (
                 <Carousel.Item key={poll._id}>
-                  <Poll pollId={poll._id} handleNext={handleNext} />
+                  <Poll
+                    pollId={poll._id}
+                    handleNext={handleNext}
+                    handleBack={handleBack}
+                  />
                 </Carousel.Item>
               ))}
             </Carousel>
-            <div
-              className="progress-bar-container"
-              onClick={handleProgressBarClick}
-            >
+            <div>
+              <div className="carousel-caption">
+                {currentIndex + 1} of {polls.length}
+              </div>
               <div
-                className="progress-bar"
-                style={{
-                  width: `${((currentIndex + 1) / polls.length) * 100}%`,
-                }}
-              />
+                className="progress-bar-container"
+                onClick={handleProgressBarClick}
+              >
+                <div
+                  className="progress-bar"
+                  style={{
+                    width: `${((currentIndex + 1) / polls.length) * 100}%`,
+                  }}
+                />
+              </div>
             </div>
-          </>
+          </div>
         ) : (
           ''
         )}

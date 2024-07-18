@@ -314,13 +314,11 @@
 }
 
 .carousel-caption {
-  position: absolute;
-  top: 50px; /* Adjust the position as needed */
-  width: 100%;
   text-align: center;
-  color: #000;
-  font-size: 18px;
+  color: grey;
   font-weight: bold;
+  font-size: 20px;
+  font-family: Kumbh Sans;
 }
 
 .progress-bar-container {

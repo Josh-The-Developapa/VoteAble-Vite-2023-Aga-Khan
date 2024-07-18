@@ -12,7 +12,6 @@ function Poll(props) {
   const [options, setOptions] = useState([]);
   const [selectedOption, setSelectedOption] = useState(null);
   const [signupFirstErr, setSignupFirstErr] = useState();
-  // const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
@@ -28,13 +27,11 @@ function Poll(props) {
       const data = await res.json();
       if (data.error) {
         setPollNotFound(data.error);
-        setIsLoading(false);
 
         return;
       } else {
         setQuestion(data.data.question);
         setOptions(data.data.options);
-        setIsLoading(false);
       }
       console.log(data);
     }
@@ -145,9 +142,15 @@ function Poll(props) {
           ))}
 
           <div className="buttonContainer">
-            <Link to={`/poll/results/${props.pollId}`} className="vote-button">
-              Results
-            </Link>
+            <button
+              // to={`/poll/results/${props.pollId}`}
+              onClick={() => {
+                props.handleBack();
+              }}
+              className="vote-button"
+            >
+              Back
+            </button>
             <button className="vote-button" onClick={vote}>
               Vote
             </button>
