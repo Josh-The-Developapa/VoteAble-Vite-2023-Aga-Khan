@@ -64,7 +64,7 @@ function Poll(props) {
     const data = await res.json();
     if (res.ok) {
       setSignupFirstErr('Voted');
-      props.handleNext(); // Call the function to go to the next item
+      // props.handleNext(); // Call the function to go to the next item
     }
     if (data.error) {
       setSignupFirstErr(data.error);
