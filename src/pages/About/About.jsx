@@ -5,7 +5,7 @@ import Logo from '../../assets/Logo.svg';
 import TeamPic from '../../assets/team-pic.png';
 import LaptopPic from '../../assets/Laptop.png';
 import EmmanuelImage from '../../assets/Emmanuel Asiimwe.jpeg';
-import JoshuaImage from '../../assets/Joshua.png';
+import JoshuaImage from '../../assets/Joshua.jpg';
 import AlbertImage from '../../assets/Albert Jordan Mulumba.jpeg';
 import KhushImage from '../../assets/Khush Shah.jpg';
 import AkhilImage from '../../assets/Akhil Muni.jpeg';

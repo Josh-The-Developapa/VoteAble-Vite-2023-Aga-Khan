@@ -167,9 +167,7 @@
   letter-spacing: -0.02em;
 
   /* Gradient text matching brand */
-  background: linear-gradient(135deg, #312783 0%, #6b5ce7 60%, #a855f7 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #312783;
   background-clip: text;
 }
 
