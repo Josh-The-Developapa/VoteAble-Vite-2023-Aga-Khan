@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import './Team.css';
-import JoshuaImage from '../../assets/Joshua.jpg';
+import JoshuaImage from '../../assets/Joshua.png';
 import KhushImage from '../../assets/Khush Shah.jpg';
 import AlbertImage from '../../assets/Albert Jordan Mulumba.jpeg';
 import EmmanuelImage from '../../assets/Emmanuel Asiimwe.jpeg';
