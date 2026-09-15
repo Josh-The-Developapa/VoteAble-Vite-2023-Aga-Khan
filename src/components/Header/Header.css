@@ -112,7 +112,7 @@
   align-items: center;
   gap: 8px;
   padding: 6px 14px 6px 8px;
-  border-radius: 50px;
+  border-radius: 8px;
   border: 1.5px solid rgba(39, 0, 60, 0.14);
   cursor: pointer;
   transition:
@@ -150,8 +150,8 @@
   cursor: pointer;
   color: #c0392b;
   background: transparent;
-  padding: 8px 18px;
-  border-radius: 6px;
+  padding: 10px 18px;
+  border-radius: 8px;
   font-family: 'Kumbh Sans', sans-serif;
   font-size: 14px;
   font-weight: 500;

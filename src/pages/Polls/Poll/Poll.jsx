@@ -180,14 +180,14 @@ function Poll(props) {
               border: '1.5px solid rgba(49,39,131,0.3)',
             }}
           >
-            ← Back
+            Back
           </button>
           <button
             className="vote-button"
             onClick={vote}
             disabled={buttonDisabled || loading}
           >
-            {loading ? <Spinner animation="border" size="sm" /> : 'Vote →'}
+            {loading ? <Spinner animation="border" size="sm" /> : 'Vote'}
           </button>
         </div>
       </div>

@@ -51,9 +51,9 @@ function Home() {
             onClick={handleVoteNowClick}
           >
             Vote Now
-            <span className="btn-arrow" aria-hidden="true">
+            {/* <span className="btn-arrow" aria-hidden="true">
               →
-            </span>
+            </span> */}
           </button>
         </div>
       </div>
